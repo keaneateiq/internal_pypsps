@@ -1,4 +1,0 @@
-# Change this team to your team (who will own the repository)
-* @EvolutionIQ/ml
-# DevOps team owns all workflows. Do not delete the line below.
-.github/workflows @EvolutionIQ/devops
