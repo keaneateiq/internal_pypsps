@@ -1,0 +1,52 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  GCP_REGISTRY: null
+  AWS_REGISTRY: null
+
+jobs:
+  project-ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Auth
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: 'projects/136280203432/locations/global/workloadIdentityPools/eiq-gha-pool/providers/eiq-gha-provider'
+          service_account: 'svc-gha@eiq-artifactory.iam.gserviceaccount.com'
+          access_token_lifetime: '300s' # default: '3600s' (1 hour)
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: eiq-artifactory
+
+      - name: Setup Python
+        uses: EvolutionIQ/devops/.github/actions/setup-python-and-poetry@main
+
+      - name: Install Dev/Test Dependencies
+        run: poetry install --with dev,test
+
+      - name: Run Pylint
+        run: make lint
+
+      - name: Run format
+        run: make format-ci
+
+      - name: Run PyTests
+        run: make test
+
+      - name: Build Dockerfile
+        run: |
+          gcloud --quiet auth configure-docker us-docker.pkg.dev && \
+          docker build --build-arg BUILDKIT_INLINE_CACHE=1 --tag ${{ env.GCP_REGISTRY }}:test .
+        env:
+          DOCKER_BUILDKIT: 1
+
