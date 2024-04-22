@@ -152,8 +152,8 @@ class CausalLoss(tf.keras.losses.Loss):
 
     def __init__(
         self,
-        outcome_loss: OutcomeLoss,
-        treatment_loss: TreatmentLoss,
+        outcome_loss: OutcomeLoss = OutcomeLoss(loss=NegloglikNormal(reduction="none"), reduction="auto"),
+        treatment_loss: TreatmentLoss = TreatmentLoss(loss=tf.keras.losses.BinaryCrossentropy(reduction="none"), reduction="auto"),
         alpha: float = 1.0,
         outcome_loss_weight: float = 1.0,
         predictive_states_regularizer: Optional[

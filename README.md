@@ -1,5 +1,5 @@
 # Disclaimer
-This repo is a modified copy of original https://github.com/gmgeorg/pypsps packge.
+This repo is a modified copy of original https://github.com/gmgeorg/pypsps packge. The original version was 0.0.1.
 Copyright belongs to https://github.com/gmgeorg.
 There is also LICENSE file in the repo.
 

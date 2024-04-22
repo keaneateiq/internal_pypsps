@@ -1,7 +1,6 @@
 """Example model architectures for pypsps."""
 
 from typing import List
-
 import tensorflow as tf
 
 import pypress
@@ -10,7 +9,6 @@ import pypress.keras.regularizers
 from . import losses
 from . import layers
 from . import metrics
-
 
 tfk = tf.keras
 
