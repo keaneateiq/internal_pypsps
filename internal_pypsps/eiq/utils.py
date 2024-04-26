@@ -1,5 +1,5 @@
 """Util functions for EIQ-specific implementation."""
-from typing import Union
+from typing import Any, Union
 
 import numpy as np
 import pandas as pd
@@ -12,6 +12,10 @@ from matplotlib import pyplot as plt
 from internal_pypsps.external.pypsps import inference, utils
 
 tfk = tf.keras
+
+PREDICTED_OUTCOME = "predicted_outcome"
+PROPENSITY_SCORE = "propensity_score"
+UTE = "ute"
 
 
 def prepare_data(
@@ -161,3 +165,40 @@ def visualize_results(
     sns.ecdfplot(ute)
     plt.grid()
     wandb.log({"ute_cumulative": wandb.Image(plt, caption="ute_cumulative")})
+
+
+def predict_outcome_propensity_ute(
+    model: tf.keras.Model, features: Any, treatment: Any
+) -> Union[pd.DataFrame, np.ndarray]:
+    """Predicts outcome, propensity score and ute for binary treatment.
+
+    Args:
+      model: a trained pypsps model.
+      features: features (X) for the causal model. Often a
+        pd.DataFrame/np.ndarray, but can also be non-standard
+        data structure as long as the pypsps model can use it as
+        input to model.predict([features, ...]).
+
+    Returns:
+      A pd.DataFrame (if features is a DataFrame) or a np.ndarray of same number of
+      rows as features with outcome and propensity_score as columns
+    """
+    # get ute
+    weighted_ute = inference.predict_ute(model, features)
+    weighted_ute = weighted_ute[:, np.newaxis]
+
+    # get outcome and propensity score
+    y_pred = inference.predict_counterfactual(model, features, treatment)
+    outcome_pred, _, weights, propensity = utils.split_y_pred(y_pred)
+    weighted_y = (weights * outcome_pred).sum(axis=1)
+    weighted_y = weighted_y[:, np.newaxis]
+
+    # concat
+    results = np.concatenate([weighted_y, propensity, weighted_ute], axis=1)
+    if isinstance(features, pd.DataFrame):
+        return pd.DataFrame(
+            results,
+            index=features.index,
+            name=[PREDICTED_OUTCOME, PROPENSITY_SCORE, UTE],
+        )
+    return results
