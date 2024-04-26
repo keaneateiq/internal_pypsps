@@ -115,4 +115,4 @@ class PSPSLearner(BaseLearner):
             Outcome and propensity score for each row in X
         """
         (X, treatment), _ = eiq_utils.prepare_data(X, treatment)
-        return utils.predict_outcome_propensity_ute(self.model, X, treatment)
+        return eiq_utils.predict_outcome_propensity_ute(self.model, X, treatment)
