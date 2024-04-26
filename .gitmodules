@@ -1,0 +1,3 @@
+[submodule "internal_pypsps/external"]
+	path = internal_pypsps/external
+	url = https://github.com/gmgeorg/pypsps

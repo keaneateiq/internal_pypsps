@@ -9,7 +9,8 @@ import tensorflow as tf
 import wandb
 from matplotlib import pyplot as plt
 
-from pypsps import inference, utils
+import wandb
+from internal_pypsps.external.pypsps import inference, utils
 
 tfk = tf.keras
 
@@ -53,6 +54,9 @@ def _eval_propensity(y_true, y_score):
         y_score: Predicted propensity scores
     """
     # TODO: Replace with curve estimator from ml-foundation
+    import pdb
+
+    pdb.set_trace()
     y_comb = pd.DataFrame({"treatment": y_true, "propensity_score": y_score})
     plt.subplots(figsize=(10, 4))
     sns.displot(data=y_comb, x="propensity_score", hue="treatment")
@@ -63,7 +67,6 @@ def _eval_propensity(y_true, y_score):
             )
         }
     )
-
     precision, recall, _ = sklearn.metrics.precision_recall_curve(y_true, y_score)
     sklearn.metrics.PrecisionRecallDisplay(precision=precision, recall=recall).plot()
     auc_precision_recall = sklearn.metrics.auc(recall, precision)
