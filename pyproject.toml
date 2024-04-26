@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pypsps"
+name = "internal_pypsps"
 version = "0.3.0"
 description = "Predictive State Principled Subclassification (PSPS) in Python (keras)"
 authors = ["ML Team <eng-ml-core@evolutioniq.com>"]
