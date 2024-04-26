@@ -9,7 +9,6 @@ import tensorflow as tf
 import wandb
 from matplotlib import pyplot as plt
 
-import wandb
 from internal_pypsps.external.pypsps import inference, utils
 
 tfk = tf.keras
