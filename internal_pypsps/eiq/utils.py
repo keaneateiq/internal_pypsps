@@ -54,9 +54,6 @@ def _eval_propensity(y_true, y_score):
         y_score: Predicted propensity scores
     """
     # TODO: Replace with curve estimator from ml-foundation
-    import pdb
-
-    pdb.set_trace()
     y_comb = pd.DataFrame({"treatment": y_true, "propensity_score": y_score})
     plt.subplots(figsize=(10, 4))
     sns.displot(data=y_comb, x="propensity_score", hue="treatment")
