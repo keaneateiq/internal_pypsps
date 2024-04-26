@@ -6,9 +6,9 @@ import pandas as pd
 import seaborn as sns
 import sklearn.metrics
 import tensorflow as tf
+import wandb
 from matplotlib import pyplot as plt
 
-import wandb
 from pypsps import inference, utils
 
 tfk = tf.keras
@@ -105,6 +105,8 @@ def visualize_results(
 
     # show mean weights of the states for treatment = 1
     plt.subplots(figsize=(10, 4))
+    if treatment.ndim == 1:
+        treatment = treatment[:, np.newaxis]
     np.mean(weights_df * treatment).plot.barh()
     wandb.log(
         {
