@@ -8,7 +8,6 @@ import pandas as pd
 import tensorflow as tf
 from wandb.integration import keras as wandb_keras
 
-from internal_pypsps.external.pypsps import inference
 from internal_pypsps.external.pypsps.keras import models
 
 from . import utils as eiq_utils

@@ -199,6 +199,6 @@ def predict_outcome_propensity_ute(
         return pd.DataFrame(
             results,
             index=features.index,
-            name=[PREDICTED_OUTCOME, PROPENSITY_SCORE, UTE],
+            columns=[PREDICTED_OUTCOME, PROPENSITY_SCORE, UTE],
         )
     return results
