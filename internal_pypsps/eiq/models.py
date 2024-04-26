@@ -5,14 +5,11 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
-import pypress
-import pypress.keras.layers
-import pypress.keras.regularizers
 import tensorflow as tf
 from wandb.integration import keras as wandb_keras
 
 from internal_pypsps.external.pypsps import inference
-from internal_pypsps.external.pypsps.keras import losses, metrics, models
+from internal_pypsps.external.pypsps.keras import models
 
 from . import utils as eiq_utils
 
@@ -86,31 +83,6 @@ class PSPSLearner(BaseLearner):
         """
         # prepare inputs and outputs
         input_data, output_data = eiq_utils.prepare_data(X, treatment, y)
-
-        # # build loss function
-        # psps_outcome_loss = losses.OutcomeLoss(
-        #     loss=neglogliks.NegloglikNormal(reduction="none"), reduction="auto"
-        # )
-        # psps_treat_loss = losses.TreatmentLoss(
-        #     loss=tf.keras.losses.BinaryCrossentropy(reduction="none"), reduction="auto"
-        # )
-        # psps_causal_loss = losses.CausalLoss(
-        #     outcome_loss=psps_outcome_loss,
-        #     treatment_loss=psps_treat_loss,
-        #     alpha=self.alpha,
-        #     outcome_loss_weight=self.outcome_loss_weight,
-        #     predictive_states_regularizer=pypress.keras.regularizers.DegreesOfFreedom(
-        #         l1=self.df_regularizer_l1, df=self.n_states - 1
-        #     ),
-        #     reduction="auto",
-        # )
-
-        # # compile model
-        # self.model.compile(
-        #     loss=psps_causal_loss,
-        #     optimizer=tfk.optimizers.Nadam(learning_rate=self.learning_rate),
-        #     metrics=[metrics.propensity_score_crossentropy],
-        # )
 
         # fit
         self.model.fit(
