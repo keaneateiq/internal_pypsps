@@ -1855,6 +1855,31 @@ url = "https://us-python.pkg.dev/eiq-artifactory/eiq/simple"
 reference = "eiq"
 
 [[package]]
+name = "pypsps"
+version = "0.0.5"
+description = "Predictive State Propensity Subclassification (PSPS) in Python (keras)"
+optional = false
+python-versions = "^3.10"
+files = []
+develop = false
+
+[package.dependencies]
+numpy = ">=1.11.0"
+pandas = ">=1.0.0"
+pypress = {git = "https://github.com/gmgeorg/pypress.git", rev = "v0.0.2"}
+tensorflow = ">=2.11.0"
+tensorflow-addons = ">=0.15.0"
+tensorflow_probability = ">=0.18.0"
+tf-keras = ">=2.14.1"
+tqdm = ">=4.62"
+
+[package.source]
+type = "git"
+url = "https://github.com/gmgeorg/pypsps.git"
+reference = "v0.0.5"
+resolved_reference = "ed1a6888310bbd9502a7bc383b78ea62bbe44f73"
+
+[[package]]
 name = "pytest"
 version = "7.2.2"
 description = "pytest: simple powerful testing with Python"
@@ -2606,6 +2631,33 @@ typing-extensions = ">=3.6.6,<4.6.0"
 wrapt = ">=1.11.0,<1.15"
 
 [[package]]
+name = "tensorflow-addons"
+version = "0.23.0"
+description = "TensorFlow Addons."
+optional = false
+python-versions = "*"
+files = [
+    {file = "tensorflow_addons-0.23.0-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:28f13271ccb128406859b5cac5219ce3112f3ac84f587c2ba59491d6cbdce96b"},
+    {file = "tensorflow_addons-0.23.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:08b047bd01c0755a4b99d848701853875c42ea6c8c380bcd276195da325abca1"},
+    {file = "tensorflow_addons-0.23.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0d224e237c11a0185fe1ea5d72e52c9d183a3adc075b4684d904f9b80b4c2579"},
+    {file = "tensorflow_addons-0.23.0-cp311-cp311-macosx_10_14_x86_64.whl", hash = "sha256:ec90069e59628e48e49bcf7f512480b920a3dcc5cebcdf3b08c6a8c050e93176"},
+    {file = "tensorflow_addons-0.23.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:8c22e575fa7479df7137a8f0bb868762889da9687542549314b6683741f367a3"},
+    {file = "tensorflow_addons-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:591b1c38cfe170727746a60983157ecbdef6a7062dfea8988558e1ab885b513a"},
+    {file = "tensorflow_addons-0.23.0-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:80fd9f129692d8f362fc7b58865799b1262fd179cd4ecc43f138cc719354204f"},
+    {file = "tensorflow_addons-0.23.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:032fd58e47aadfcbfc77e30907d08bb41bcc2d17ed90e7fe7cb88a751ef6dda0"},
+    {file = "tensorflow_addons-0.23.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:56f770f7989bf64715dd6e53b23cc2c0ffd91df8d9ee700bb24b3bb1e0b2ea02"},
+]
+
+[package.dependencies]
+packaging = "*"
+typeguard = ">=2.7,<3.0.0"
+
+[package.extras]
+tensorflow = ["tensorflow (>=2.13.0,<2.16.0)"]
+tensorflow-cpu = ["tensorflow-cpu (>=2.13.0,<2.16.0)"]
+tensorflow-gpu = ["tensorflow-gpu (>=2.13.0,<2.16.0)"]
+
+[[package]]
 name = "tensorflow-estimator"
 version = "2.12.0"
 description = "TensorFlow Estimator."
@@ -2688,6 +2740,17 @@ files = [
 tests = ["pytest", "pytest-cov"]
 
 [[package]]
+name = "tf-keras"
+version = "2.15.0"
+description = "Deep learning for humans."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "tf_keras-2.15.0-py3-none-any.whl", hash = "sha256:48607ee60a4d1fa7c09d6a44293a803faf3136e7a43f92df089ac094117547d2"},
+    {file = "tf_keras-2.15.0.tar.gz", hash = "sha256:d7559c2ba40667679fcb2105d3e4b68bbc07ecafbf1037462ce7b3974c3c6798"},
+]
+
+[[package]]
 name = "threadpoolctl"
 version = "3.2.0"
 description = "threadpoolctl"
@@ -2763,6 +2826,21 @@ files = [
 [package.extras]
 docs = ["myst-parser", "pydata-sphinx-theme", "sphinx"]
 test = ["argcomplete (>=3.0.3)", "mypy (>=1.7.0)", "pre-commit", "pytest (>=7.0,<7.5)", "pytest-mock", "pytest-mypy-testing"]
+
+[[package]]
+name = "typeguard"
+version = "2.13.3"
+description = "Run-time type checker for Python"
+optional = false
+python-versions = ">=3.5.3"
+files = [
+    {file = "typeguard-2.13.3-py3-none-any.whl", hash = "sha256:5e3e3be01e887e7eafae5af63d1f36c849aaa94e3a0112097312aabfa16284f1"},
+    {file = "typeguard-2.13.3.tar.gz", hash = "sha256:00edaa8da3a133674796cf5ea87d9f4b4c367d77476e185e80251cc13dfbb8c4"},
+]
+
+[package.extras]
+doc = ["sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
+test = ["mypy", "pytest", "typing-extensions"]
 
 [[package]]
 name = "typing-extensions"
@@ -2956,4 +3034,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "c6d8a534dacbb099e8159e0555cbd0b659dfac16ff58177149b682282fe9c780"
+content-hash = "57b034942edfa6ac7a76843257d7e621bd920f8c632601a36683bbfb04bb38c3"

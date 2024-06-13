@@ -87,8 +87,8 @@ def visualize_results(
 
     # inference
     y_pred = model.predict(input_data)
-    outcome_pred, _, propensity_score, weights = utils.split_y_pred(y_pred)
-
+    outcome_pred, _, weights, propensity_score = utils.split_y_pred(y_pred)
+    
     # evaluate propensity and show precision-call curve
     _eval_propensity(output_data[:, 1], propensity_score.ravel())
 
