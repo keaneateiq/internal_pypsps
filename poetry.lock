@@ -1855,6 +1855,31 @@ url = "https://us-python.pkg.dev/eiq-artifactory/eiq/simple"
 reference = "eiq"
 
 [[package]]
+name = "pypsps"
+version = "0.0.5"
+description = "Predictive State Propensity Subclassification (PSPS) in Python (keras)"
+optional = false
+python-versions = "^3.10"
+files = []
+develop = false
+
+[package.dependencies]
+numpy = ">=1.11.0"
+pandas = ">=1.0.0"
+pypress = {git = "https://github.com/gmgeorg/pypress.git", rev = "v0.0.2"}
+tensorflow = ">=2.11.0"
+tensorflow-addons = ">=0.15.0"
+tensorflow_probability = ">=0.18.0"
+tf-keras = ">=2.14.1"
+tqdm = ">=4.62"
+
+[package.source]
+type = "git"
+url = "https://github.com/gmgeorg/pypsps.git"
+reference = "v0.0.5"
+resolved_reference = "ed1a6888310bbd9502a7bc383b78ea62bbe44f73"
+
+[[package]]
 name = "pytest"
 version = "7.2.2"
 description = "pytest: simple powerful testing with Python"
@@ -2715,6 +2740,17 @@ files = [
 tests = ["pytest", "pytest-cov"]
 
 [[package]]
+name = "tf-keras"
+version = "2.15.0"
+description = "Deep learning for humans."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "tf_keras-2.15.0-py3-none-any.whl", hash = "sha256:48607ee60a4d1fa7c09d6a44293a803faf3136e7a43f92df089ac094117547d2"},
+    {file = "tf_keras-2.15.0.tar.gz", hash = "sha256:d7559c2ba40667679fcb2105d3e4b68bbc07ecafbf1037462ce7b3974c3c6798"},
+]
+
+[[package]]
 name = "threadpoolctl"
 version = "3.2.0"
 description = "threadpoolctl"
@@ -2998,4 +3034,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "c511fb46d018eb4eb63adaad557e6a2142fea563e43546dcba26ff01ecdd7a0c"
+content-hash = "57b034942edfa6ac7a76843257d7e621bd920f8c632601a36683bbfb04bb38c3"
